@@ -1,0 +1,72 @@
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa" />
+      <stop offset="100%" style="stop-color:#e9ecef" />
+    </linearGradient>
+    <linearGradient id="playGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea" />
+      <stop offset="100%" style="stop-color:#764ba2" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b" />
+      <stop offset="100%" style="stop-color:#ee5a24" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="225" fill="url(#bgGradient)" rx="8"/>
+  
+  <!-- Subtle pattern -->
+  <defs>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="1" fill="#667eea" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="225" fill="url(#dots)"/>
+  
+  <!-- Video/lesson container -->
+  <rect x="50" y="50" width="300" height="125" rx="8" fill="white" stroke="#e9ecef" stroke-width="2"/>
+  
+  <!-- Play button background -->
+  <circle cx="200" cy="112.5" r="35" fill="url(#playGradient)" opacity="0.9"/>
+  <circle cx="200" cy="112.5" r="25" fill="white" opacity="0.2"/>
+  
+  <!-- Play button triangle -->
+  <polygon points="190,102.5 190,122.5 210,112.5" fill="white"/>
+  
+  <!-- Video timeline bar -->
+  <rect x="70" y="155" width="260" height="4" rx="2" fill="#e9ecef"/>
+  <rect x="70" y="155" width="100" height="4" rx="2" fill="url(#accentGradient)"/>
+  
+  <!-- Time indicators -->
+  <text x="75" y="175" fill="#666" font-family="Arial, sans-serif" font-size="10">0:00</text>
+  <text x="315" y="175" fill="#666" font-family="Arial, sans-serif" font-size="10">15:30</text>
+  
+  <!-- Lesson metadata icons -->
+  <g transform="translate(60, 30)">
+    <!-- Clock icon -->
+    <circle cx="0" cy="0" r="8" fill="none" stroke="url(#playGradient)" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="0" y2="-5" stroke="url(#playGradient)" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="3" y2="0" stroke="url(#playGradient)" stroke-width="1.5"/>
+  </g>
+  
+  <g transform="translate(320, 30)">
+    <!-- Level indicator -->
+    <rect x="-6" y="-6" width="4" height="12" fill="url(#playGradient)" opacity="0.4"/>
+    <rect x="-1" y="-4" width="4" height="8" fill="url(#playGradient)" opacity="0.6"/>
+    <rect x="4" y="-8" width="4" height="16" fill="url(#playGradient)"/>
+  </g>
+  
+  <!-- Corner decorative elements -->
+  <rect x="10" y="10" width="20" height="2" rx="1" fill="url(#playGradient)" opacity="0.3"/>
+  <rect x="10" y="15" width="15" height="2" rx="1" fill="url(#playGradient)" opacity="0.3"/>
+  
+  <rect x="370" y="10" width="20" height="2" rx="1" fill="url(#accentGradient)" opacity="0.3"/>
+  <rect x="375" y="15" width="15" height="2" rx="1" fill="url(#accentGradient)" opacity="0.3"/>
+  
+  <!-- Bottom text -->
+  <text x="200" y="205" text-anchor="middle" fill="#667eea" font-family="Arial, sans-serif" font-size="14" font-weight="500" opacity="0.7">
+    Video Lesson
+  </text>
+</svg>
