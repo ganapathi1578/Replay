@@ -9,7 +9,7 @@
     // Configuration
     const CONFIG = {
         // Ad Network IDs - Replace with your actual IDs
-        INFOLINKS_WSID: '12345',
+        INFOLINKS_WSID: '3438812',
         PROPELLER_ZONE_ID: '67890',
         POPADS_SITE_ID: '11111',
         
