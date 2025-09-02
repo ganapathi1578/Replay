@@ -1,185 +1,359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stochastic Calculus - Replay</title>
-    <link rel="stylesheet" href="../assets/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Replay — Stochastic Calculus (YouTube-style Playlist)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<style>
+  /* ===== Base reset & tokens ===== */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;scroll-behavior:smooth}
+  body{background:#ffffff;color:#111827;line-height:1.45;-webkit-font-smoothing:antialiased;padding:16px 0}
+  :root{
+    --max-width:1200px;
+    --gutter:20px;
+    --accent:#FF0000;         /* youtube-red */
+    --muted:#6b7280;
+    --surface:#ffffff;
+    --panel:#f8f9fb;
+    --card-radius:10px;
+    --shadow:0 8px 24px rgba(15,23,42,0.06);
+    --focus: rgba(255,0,0,0.12);
+  }
+
+  /* ===== Layout container =====
+     The page keeps a left sidebar and main content. The main area has
+     player column and playlist column. Gaps tuned to feel like YouTube.
+  */
+  .page {
+    max-width: calc(var(--max-width) + 160px); /* allow some space for sidebar */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 72px 1fr; /* narrow left nav + main */
+    gap: var(--gutter);
+    align-items:start;
+    padding: 0 18px;
+  }
+
+  /* ===== Left vertical sidebar (compact) ===== */
+  .sidebar {
+    position:sticky;
+    top:16px;
+    height: calc(100vh - 32px);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+    padding-top:12px;
+  }
+  .sidebar .logo {
+    width:48px;height:32px;border-radius:6px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;
+    box-shadow:none;font-size:16px;
+  }
+  .sidebar .icon-btn{
+    width:48px;height:48px;border-radius:8px;display:grid;place-items:center;color:var(--muted);background:transparent;border:0;cursor:pointer;
+  }
+  .sidebar .icon-btn:focus{outline:3px solid var(--focus);outline-offset:4px}
+
+  /* ===== Main area (player + playlist) ===== */
+  .main {
+    display:grid;
+    grid-template-columns: 1fr 360px; /* player (flex) + playlist (fixed) */
+    gap: var(--gutter);
+    align-items:start;
+  }
+  @media (max-width:1040px){
+    .main{grid-template-columns: 1fr 320px}
+  }
+  @media (max-width:900px){
+    .page{grid-template-columns: 1fr} /* hide left sidebar stacked on small screens */
+    .sidebar{display:none}
+    .main{grid-template-columns: 1fr}
+  }
+
+  /* ===== Player card ===== */
+  .player-card{
+    background:var(--surface);
+    border-radius:var(--card-radius);
+    box-shadow:var(--shadow);
+    border:1px solid rgba(15,23,42,0.04);
+    overflow:hidden;
+  }
+  .player-frame{
+    width:100%;
+    height:520px;
+    border:0;
+    background:#000;
+  }
+  @media (max-width:820px){ .player-frame{height:360px} }
+
+  .player-meta{
+    padding:14px 16px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    justify-content:space-between;
+  }
+  .player-meta .meta-left{max-width:calc(100% - 160px)}
+  .title{
+    font-size:1.15rem;font-weight:700;color:#111827;margin-bottom:6px;
+  }
+  .sub { color:var(--muted); font-size:0.92rem }
+  .player-actions{display:flex;gap:8px;align-items:center}
+  .open-yt{
+    background:var(--accent);color:#fff;padding:9px 12px;border-radius:8px;font-weight:700;border:0;cursor:pointer;
+  }
+  .meta-pill{padding:8px 10px;border-radius:999px;border:1px solid rgba(15,23,42,0.04);background:var(--panel);color:var(--muted);font-weight:700}
+
+  /* ===== Playlist column ===== */
+  .playlist{
+    background:var(--surface);
+    border-radius:var(--card-radius);
+    border:1px solid rgba(15,23,42,0.04);
+    box-shadow:var(--shadow);
+    overflow:auto;
+    height:520px;
+  }
+  @media (max-width:820px){ .playlist{height:360px} }
+
+  .plist-header{
+    display:flex;align-items:center;justify-content:space-between;padding:12px 12px;border-bottom:1px solid rgba(15,23,42,0.03);
+  }
+  .plist-title{font-weight:700}
+  .plist-controls{display:flex;gap:8px;align-items:center}
+  .plist-controls button{padding:8px 10px;border-radius:8px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+
+  .plist-items{display:flex;flex-direction:column;gap:6px;padding:10px}
+  .plist-item{
+    display:flex;gap:12px;align-items:center;padding:8px;border-radius:8px;cursor:pointer;
+    transition:background 180ms, transform 180ms;
+  }
+  .plist-item:hover{background:rgba(0,0,0,0.03);transform:translateY(-2px)}
+  .plist-item:focus{outline:3px solid rgba(255,0,0,0.10);outline-offset:3px;border-radius:8px}
+  .plist-item.active{background:rgba(255,0,0,0.06);border-left:3px solid var(--accent);padding-left:5px}
+
+  .thumb{width:160px;height:90px;flex:0 0 160px;border-radius:6px;overflow:hidden;background:#000}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .pi-body{display:flex;flex-direction:column;min-width:0}
+  .pi-title{font-weight:700;font-size:0.95rem;color:#111827;line-height:1.2}
+  .pi-meta{color:var(--muted);font-size:0.9rem;margin-top:6px}
+
+  .pi-right{margin-left:auto;text-align:right;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+  .pi-index{font-weight:700;color:var(--muted);font-size:0.92rem}
+  .pi-duration{color:var(--muted);font-weight:700;font-size:0.9rem}
+
+  /* ===== Top search area ===== */
+  .topbar{
+    max-width: var(--max-width);
+    margin: 0 auto 12px;
+    display:flex;align-items:center;gap:12px;padding:0 18px;
+  }
+  .searchbar{
+    flex:1;display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:999px;padding:8px 12px;border:1px solid rgba(15,23,42,0.04)
+  }
+  .searchbar input{border:0;outline:none;background:transparent;font-size:0.95rem;color:var(--muted);width:100%}
+  .top-actions{display:flex;gap:8px;align-items:center}
+
+  /* ===== Footer spacing ===== */
+  .footer{max-width:var(--max-width);margin:18px auto;padding:12px 18px;color:var(--muted);font-size:0.9rem;text-align:center}
+
+  /* small screens adjustments */
+  @media (max-width:560px){
+    .thumb{width:120px;height:70px;flex:0 0 120px}
+    .pi-right{display:none}
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">
-                <i class="fas fa-graduation-cap"></i>
-                Replay
-            </a>
-            <a href="../index.html" class="nav-back">
-                <i class="fas fa-arrow-left"></i> Back to Subjects
-            </a>
-        </div>
+
+  <!-- topbar (search + actions) -->
+  <div class="topbar" role="region" aria-label="Topbar">
+    <div class="logo" style="display:flex;align-items:center;gap:12px">
+      <div style="width:40px;height:28px;background:var(--accent);border-radius:6px;color:#fff;display:grid;place-items:center;font-weight:800">R</div>
+      <div style="font-weight:700">Replay</div>
+    </div>
+
+    <div class="searchbar" role="search" aria-label="Search playlist">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="color:var(--muted)"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input id="search" placeholder="Search videos in playlist..." aria-label="Search playlist">
+    </div>
+
+    <div class="top-actions">
+      <button title="Notifications" class="icon-btn" style="background:transparent;border-radius:8px;padding:8px;border:0;color:var(--muted)"><i class="fas fa-bell"></i></button>
+      <div class="icon-btn" style="background:#eee;border-radius:999px;width:38px;height:38px;display:grid;place-items:center;color:#333">S</div>
+    </div>
+  </div>
+
+  <div class="page" role="main">
+    <!-- left compact sidebar -->
+    <nav class="sidebar" aria-label="Main navigation">
+      <div class="logo" aria-hidden>R</div>
+      <button class="icon-btn" title="Home" aria-label="Home"><i class="fas fa-home"></i></button>
+      <button class="icon-btn" title="Library" aria-label="Library"><i class="fas fa-book"></i></button>
+      <button class="icon-btn" title="Subscriptions" aria-label="Subscriptions"><i class="fas fa-layer-group"></i></button>
+      <div style="flex:1"></div>
+      <button class="icon-btn" title="Settings" aria-label="Settings"><i class="fas fa-cog"></i></button>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <header class="page-header">
-                <h1><i class="fas fa-superscript"></i> Stochastic Calculus</h1>
-                <p>Dive into the mathematics of randomness — explore Brownian motion, Itô calculus, and stochastic differential equations with intuitive explanations.</p>
-            </header>
+    <!-- main content: player + playlist -->
+    <div class="main">
+      <!-- Player -->
+      <section>
+        <div class="player-card" aria-label="Video player">
+          <iframe id="player" class="player-frame" src="" title="YouTube player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            <section class="lessons-grid">
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Stochastic Calculus Basics">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Stochastic Calculus Basics</h3>
-                        <p>Learn countable and uncountable sets, and sigma fields—fundamentals for understanding stochastic processes.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 45 min</span>
-                            <span><i class="fas fa-signal"></i> Beginner</span>
-                        </div>
-                        <a href="../lessons/sc-l1.html" class="btn btn-primary">
-                            Watch Lesson <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
+          <div class="player-meta">
+            <div class="meta-left">
+              <div class="title" id="v-title">—</div>
+              <div class="sub" id="v-sub">Stochastic Calculus — Prof. Barun Sarkar</div>
+            </div>
 
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Introduction to Stochastic Calculus">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Intro to Stochastic Calculus: Sets & Probability Part - I</h3>
-                        <p>Explore foundational topics such as countable vs uncountable sets, sigma fields, and essential probability theory concepts required for stochastic calculus.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 38 min</span>
-                            <span><i class="fas fa-signal"></i> Beginner</span>
-                        </div>
-                        <a href="../lessons/sc-l2.html" class="btn btn-primary">
-                            Watch Lesson <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Introduction to Stochastic Calculus">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Intro to Stochastic Calculus: Sets & Probability Part - II</h3>
-                        <p>Explore foundational topics such as countable vs uncountable sets, sigma fields, and essential probability theory concepts required for stochastic calculus.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 38 min</span>
-                            <span><i class="fas fa-signal"></i> Beginner</span>
-                        </div>
-                        <a href="../lessons/sc-l2p2.html" class="btn btn-primary">
-                            Watch Lesson <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Stochastic Calculus Probability Continuation">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 3: Probability Theory</h3>
-                        <p>Continuation on events, probability axioms, and deeper insights into sigma fields.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 40 min</span>
-                            <span><i class="fas fa-signal"></i> Beginner</span>
-                        </div>
-                        <a href="../lessons/sc-l3.html" class="btn btn-primary">
-                            Watch Lesson <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Stochastic Calculus Probability Continuation">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 4: Probability Theory</h3>
-                        <p>Continuation of Probability .</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 90 min</span>
-                            <span><i class="fas fa-signal"></i> Beginner</span>
-                        </div>
-                        <a href="../lessons/sc-l4.html" class="btn btn-primary">
-                            Watch Lesson <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Stochastic Calculus Probability Continuation">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 5: Probability Theory</h3>
-                        <p>Continuation of Probability .</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 45 min</span>
-                            <span><i class="fas fa-signal"></i> Beginner</span>
-                        </div>
-                        <a href="../lessons/sc-l5.html" class="btn btn-primary">
-                            Watch Lesson <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Stochastic Calculus Session">
-                        <div class="card-overlay">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Stochastic Calculus – Scheduled Class</h3>
-                        <p>Don’t miss our upcoming session on Thursday, 8th August 2025. We'll cover the foundational topics of probability theory essential for stochastic processes.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> To Be Announced</span>
-                            <span><i class="fas fa-signal"></i> Open</span>
-                        </div>
-                        <a href="#" class="btn btn-primary">
-                            View Details <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </section>
+            <div class="player-actions" aria-hidden>
+              <button id="open" class="open-yt">Open in YouTube</button>
+              <div class="meta-pill" id="v-duration">—</div>
+            </div>
+          </div>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Replay. All rights reserved.</p>
+        <!-- small description / about area -->
+        <div style="margin-top:12px;background:var(--surface);padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);box-shadow:var(--shadow)">
+          <strong>About this playlist</strong>
+          <p style="color:var(--muted);margin-top:8px">Measure-theoretic foundations and probability theory for stochastic processes. Click items on the right to play.</p>
         </div>
-    </footer>
+      </section>
 
-    <!-- Ad Networks Script -->
-    <script src="../assets/scripts.js"></script>
+      <!-- Playlist -->
+      <aside class="playlist" aria-label="Playlist">
+        <div class="plist-header">
+          <div>
+            <div class="plist-title">Stochastic Calculus — Playlist</div>
+            <div class="plist-sub" id="count" style="color:var(--muted);font-size:0.92rem">0 videos</div>
+          </div>
+          <div class="plist-controls">
+            <button id="shuffle" title="Shuffle" aria-label="Shuffle" class="icon-btn"><i class="fas fa-random"></i></button>
+            <button id="play-first" title="Play first" class="icon-btn"><i class="fas fa-play"></i></button>
+          </div>
+        </div>
+
+        <div class="plist-items" id="plist"></div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="footer">© 2025 Replay — All rights reserved</div>
+
+<script>
+/* ===== Playlist data (your IDs + titles) ===== */
+const PLAYLIST_ID = 'PLlS7_Fg1JIsQdC9cow4WBf_fcW_SSl7qS';
+const VIDEOS = [
+  { id: '-pik1BNtiKA', title: 'Stochastic Calculus Basics – Countability & Sigma Fields', duration: '43:23' },
+  { id: 'kfyFXVVuZjg', title: 'Intro to Stochastic Calculus: Sets & Probability | Part - I', duration: '38:41' },
+  { id: '4ihkVYZeOio', title: 'Intro to Stochastic Calculus – Basic Probability Explained Part - 2', duration: '37:56' },
+  { id: '7Z4JQpYFZ9A', title: 'Day 3 – Probability Continuation', duration: '40:58' },
+  { id: '8QwBWaeejSs', title: 'Stochastic Calculus Class 4 | Random Variables & Measurability Explained', duration: '1:24:18' },
+  { id: '53I8zzo0uVA', title: 'Stochastic Calclus | Class 5: Probability Theory', duration: '36:13' },
+  { id: 'l9Os9hIN5uo', title: 'Borel Functions Part-1', duration: '37:33' },
+  { id: 'qgjpUDiyyxc', title: 'Borel Functions Part-2', duration: '1:58:18' },
+  { id: 'rroAZ7EZ3XU', title: 'Stochastic Calclus | Part 1 | 25-08-2025', duration: '43:48' },
+  { id: 'RMoZ8kB_W_E', title: 'Stochastic Calclus | Part 2 | 25-08-2025', duration: '33:40' },
+  { id: '9nd7KHOIs2U', title: 'Stochastic Calclus | Prof Barun Sarkar | 01-09-2025', duration: '30:18' }
+];
+
+/* ===== DOM references ===== */
+const plist = document.getElementById('plist');
+const countEl = document.getElementById('count');
+const player = document.getElementById('player');
+const vTitle = document.getElementById('v-title');
+const vSub = document.getElementById('v-sub');
+const vDuration = document.getElementById('v-duration');
+const openBtn = document.getElementById('open');
+const search = document.getElementById('search');
+const shuffleBtn = document.getElementById('shuffle');
+const playFirstBtn = document.getElementById('play-first');
+
+/* ===== render playlist ===== */
+function render(list){
+  plist.innerHTML = '';
+  list.forEach((v,i) => {
+    const item = document.createElement('div');
+    item.className = 'plist-item';
+    item.tabIndex = 0;
+    item.dataset.index = i;
+    item.innerHTML = `
+      <div class="thumb"><img loading="lazy" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="${escapeHtml(v.title)}"></div>
+      <div class="pi-body">
+        <div class="pi-title">${escapeHtml(v.title)}</div>
+        <div class="pi-meta">${v.duration}</div>
+      </div>
+      <div class="pi-right">
+        <div class="pi-index">${i+1}</div>
+        <div class="pi-duration">${v.duration}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => play(i));
+    item.addEventListener('keydown', (e) => { if(e.key === 'Enter') play(i); });
+    plist.appendChild(item);
+  });
+  countEl.textContent = `${list.length} videos`;
+}
+
+/* ===== state & player handling ===== */
+let currentIndex = 0;
+function setPlayer(id, index){
+  currentIndex = index;
+  const embed = `https://www.youtube.com/embed/${id}?rel=0&autoplay=1&mute=0&list=${PLAYLIST_ID}`;
+  player.src = embed;
+  vTitle.textContent = VIDEOS[index].title;
+  vDuration.textContent = VIDEOS[index].duration;
+  openBtn.onclick = () => window.open(`https://www.youtube.com/watch?v=${id}&list=${PLAYLIST_ID}&index=${index+1}`, '_blank', 'noopener');
+  highlight();
+  // scroll into view in playlist
+  const active = plist.querySelector(`.plist-item[data-index="${index}"]`);
+  if(active) active.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+}
+function play(i){ if(i < 0 || i >= VIDEOS.length) return; setPlayer(VIDEOS[i].id, i); }
+function highlight(){
+  const items = plist.querySelectorAll('.plist-item');
+  items.forEach(it => it.classList.remove('active'));
+  const active = plist.querySelector(`.plist-item[data-index="${currentIndex}"]`);
+  if(active) active.classList.add('active');
+}
+
+/* ===== search + shuffle + play first ===== */
+search.addEventListener('input', () => {
+  const q = search.value.trim().toLowerCase();
+  if(!q) return render(VIDEOS);
+  const filtered = VIDEOS.filter(v => v.title.toLowerCase().includes(q));
+  render(filtered);
+});
+shuffleBtn.addEventListener('click', () => {
+  const arr = VIDEOS.slice();
+  for (let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  render(arr);
+});
+playFirstBtn.addEventListener('click', () => play(0));
+
+/* ===== utils ===== */
+function escapeHtml(s){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+/* ===== init ===== */
+render(VIDEOS);
+play(0);
+
+/* keyboard hint: 'k' opens current video on YouTube (since controlling iframe requires API) */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'k') {
+    openBtn.click();
+  }
+});
+</script>
 </body>
 </html>
