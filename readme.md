@@ -149,7 +149,10 @@ You are free to use, modify, and distribute it with proper attribution.
 ## 👨‍💻 Author
 [**Lakshmi Ganapathi Kodi**](http://github.com/ganapathi1578)  
 🎓 B.Tech, Mathematics & Computing, NIT Mizoram  
-🌐 [Portfolio (coming soon)](https://ganapathi1578.github.io) | [LinkedIn](https://linkedin.com)
+🌐 [Portfolio (coming soon)](https://ganapathi1578.github.io) | [LinkedIn](www.linkedin.com/in/lakshmi-ganapathi-kodi-7b3542224)
+
+
+
 
 *Built with ❤️ for learners who replay > regret.** Questions? Open an issue!*
 
