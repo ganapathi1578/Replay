@@ -142,8 +142,16 @@ This project is a **resume booster** for frontend roles—proves you can deliver
 
 ## 📄 License
 
-MIT License. See [LICENSE](LICENSE).
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).  
+You are free to use, modify, and distribute it with proper attribution.
 
+---
+
+## 👨‍💻 Author
+**Lakshmi Ganapathi Kodi**  
+🎓 B.Tech, Mathematics & Computing, NIT Mizoram  
+🌐 [Portfolio (coming soon)](https://ganapathi1578.github.io) | [LinkedIn](https://linkedin.com)
 ---
 
 **Built with ❤️ for learners who replay > regret.** Questions? Open an issue!
