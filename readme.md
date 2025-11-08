@@ -4,7 +4,7 @@
 
 ## 🚀 Overview
 
-**EduClass** is a modern, **fully static yet dynamically powered** online learning platform built with vanilla HTML, CSS, and JavaScript. It delivers recorded video lessons across diverse subjects like Mathematics (Fluid Dynamics, Functional Analysis, Stochastic Calculus), Computer Science (Neural Networks, Artificial Intelligence, Theory of Computation), and more. Designed for educators and self-learners, it transforms a simple static site into a **live, updatable content hub** by fetching real-time YouTube playlist data client-side—**no backend, no servers, no databases required**.
+**Replay** is a modern, **fully static yet dynamically powered** online learning platform built with vanilla HTML, CSS, and JavaScript. It delivers recorded video lessons across diverse subjects like Mathematics (Fluid Dynamics, Functional Analysis, Stochastic Calculus), Computer Science (Neural Networks, Artificial Intelligence, Theory of Computation), and more. Designed for educators and self-learners, it transforms a simple static site into a **live, updatable content hub** by fetching real-time YouTube playlist data client-side—**no backend, no servers, no databases required**.
 
 What started as a basic static site with hardcoded lesson cards has evolved into a **hybrid dynamic-static powerhouse**: Static for blazing-fast loads and zero-cost hosting, but dynamic for auto-updating playlists from YouTube. This makes it ideal for quick deployments on GitHub Pages or Netlify, while keeping content fresh without manual HTML edits.
 
@@ -12,7 +12,7 @@ What started as a basic static site with hardcoded lesson cards has evolved into
 - **Core Philosophy**: Simplicity meets smarts—static reliability + internet-powered dynamism.
 - **Deployment Time**: <5 minutes. Fork, edit playlist IDs, deploy!
 
-> **Novelty Spotlight**: In a world of heavy frameworks (React, Next.js), EduClass proves you can build a **production-ready, dynamic learning platform with 100% vanilla JS**. By leveraging browser APIs (localStorage for caching, Fetch for proxies), it fetches live YouTube data while staying under 50KB gzipped. No APIs, no auth—just clever CORS proxies and async patterns. This "static-with-a-twist" approach is perfect for edge cases like offline-first education or low-bandwidth regions.
+> **Novelty Spotlight**: In a world of heavy frameworks (React, Next.js), Replay proves you can build a **production-ready, dynamic learning platform with 100% vanilla JS**. By leveraging browser APIs (localStorage for caching, Fetch for proxies), it fetches live YouTube data while staying under 50KB gzipped. No APIs, no auth—just clever CORS proxies and async patterns. This "static-with-a-twist" approach is perfect for edge cases like offline-first education or low-bandwidth regions.
 
 ## ✨ Key Features
 
