@@ -1,6 +1,9 @@
 # Replay - Dynamic Static Learning Platform
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/yourusername/edaclass?style=social)](https://github.com/yourusername/edaclass) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Static Hosting Ready](https://img.shields.io/badge/Deploy-Netlify%20%7C%20GitHub%20Pages-brightgreen)](https://www.netlify.com/) [![Responsive Design](https://img.shields.io/badge/Responsive-Mobile%20First-blue)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
+[![GitHub Repo stars](https://img.shields.io/github/stars/ganapathi1578/Replay?style=social)](https://github.com/ganapathi1578/Replay)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Static Hosting Ready](https://img.shields.io/badge/Deploy-GitHub%20Pages%20%7C%20Netlify-brightgreen)](https://ganapathi1578.github.io/Replay)
+[![Responsive Design](https://img.shields.io/badge/Responsive-Mobile%20First-blue)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
 
 ## 🚀 Overview
 
