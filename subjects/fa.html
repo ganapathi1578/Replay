@@ -1,322 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functional Analysis Lessons - Replay</title>
-    <link rel="stylesheet" href="../assets/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functional Analysis Lessons - Replay</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .loading {
+      text-align: center;
+      padding: 2em;
+      font-size: 1.2em;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">
-                <i class="fas fa-graduation-cap"></i>
-                Replay
-            </a>
-            <a href="../index.html" class="nav-back">
-                <i class="fas fa-arrow-left"></i> Back to Subjects
-            </a>
-        </div>
-    </nav>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <i class="fas fa-graduation-cap"></i> Replay
+      </a>
+      <a href="../index.html" class="nav-back">
+        <i class="fas fa-arrow-left"></i> Back to Subjects
+      </a>
+    </div>
+  </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <header class="page-header">
-                <h1><i class="fas fa-infinity"></i> Functional Analysis — Prof. Raghavendra</h1>
-                <p>Lecture recordings and replays for the Functional Analysis series. Click any card to open the playlist at that lecture on YouTube.</p>
-            </header>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <h1><i class="fas fa-infinity"></i> Functional Analysis — Prof. Raghavendra</h1>
+        <p>Lecture recordings and replays for the Functional Analysis series. Click any card to open the lecture on YouTube.</p>
+      </header>
 
-            <section class="lessons-grid">
-                <!-- Playlist base link: opens the playlist at the specified index -->
+      <div id="playlist-container" class="lessons-grid" data-playlist-id="PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq">
+        <div class="loading">Loading playlist...</div>
+      </div>
+    </div>
+  </main>
 
-                <!-- Lecture 1 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Introduction to Functional Analysis">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Introduction to Functional Analysis | Prof. Raghavendra</h3>
-                        <p>Short introduction to the course and topics to be covered.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 5:19</span>
-                            <span><i class="fas fa-signal"></i> Overview</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=7obzMayllxs&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=1&pp=iAQB0gcJCbIJAYcqIYzv" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Replay. All rights reserved.</p>
+    </div>
+  </footer>
 
-                <!-- Lecture 2 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Class 1 (partial)">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 1 (partial) | Functional Analysis</h3>
-                        <p>First class (partial) covering initial definitions and examples.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 16:57</span>
-                            <span><i class="fas fa-signal"></i> Open</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=ao3v4uUTCkk&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=2" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 3 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Metric & Normed Spaces">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Metric &amp; Normed Spaces | Functional Analysis</h3>
-                        <p>Dive into metric and normed spaces — definitions, examples and key properties.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 52:20</span>
-                            <span><i class="fas fa-signal"></i> Core</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=E6T0DSzsDx0&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=3" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 4 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Cauchy-Schwarz Inequality & Proofs">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 3: Rigorous Proofs of Cauchy-Schwarz Inequality</h3>
-                        <p>Rigorous derivations and examples for Cauchy-Schwarz.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 48:46</span>
-                            <span><i class="fas fa-signal"></i> Proofs</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=O73U1qlRP2c&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=4" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 5 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Examples & Young's Inequality">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 4: Examples 7.1, 7.2 &amp; Young's Inequality</h3>
-                        <p>Worked examples and a proof using Young's inequality.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 45:19</span>
-                            <span><i class="fas fa-signal"></i> Examples</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=_EJEvO-mCm8&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=5" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 6 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Hölder's & Minkowski's Inequalities">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Class 5: Hölder's Inequality, Minkowski's Inequality &amp; Related Proofs</h3>
-                        <p>Foundational inequalities in normed spaces with proofs and applications.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 43:36</span>
-                            <span><i class="fas fa-signal"></i> Intermediate</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=3GnFzQrGBWc&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=6" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 7 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Completeness Lp norm">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Completeness, Lp Norm | Functional Analysis</h3>
-                        <p>Discussion on completeness and Lp norms.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 48:02</span>
-                            <span><i class="fas fa-calendar-alt"></i> 18-07-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=QDDHWRt4AZw&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=7" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 8 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Completeness part 2">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Completeness — Part 2 | Functional Analysis</h3>
-                        <p>Continuation of completeness and related examples.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 37:33</span>
-                            <span><i class="fas fa-calendar-alt"></i> 18-07-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=k2J27iZQKcI&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 9 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Is Np norm finite?">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Is Np Norm Finite? | Functional Analysis</h3>
-                        <p>Discussion on finiteness of Np norms with examples.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 51:46</span>
-                            <span><i class="fas fa-calendar-alt"></i> 19-07-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=YtG_Zo9kB-A&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=9" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 10 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Functional Analysis 21-08-2025">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Functional Analysis | Prof. Raghavendra</h3>
-                        <p>Recorded lecture from 21-08-2025.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 53:50</span>
-                            <span><i class="fas fa-calendar-alt"></i> 21-08-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=UA-VIXxbimI&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=10" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 11 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Functional Analysis 25-08-2025">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Functional Analysis | Prof. Raghavendra</h3>
-                        <p>Recorded lecture from 25-08-2025.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 28:29</span>
-                            <span><i class="fas fa-calendar-alt"></i> 25-08-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=rIHQk4txH-g&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=11" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 12 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Functional Analysis 26-08-2025">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Functional Analysis | Prof. Raghavendra</h3>
-                        <p>Recorded lecture from 26-08-2025.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 47:48</span>
-                            <span><i class="fas fa-calendar-alt"></i> 26-08-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=toez1a8wCuk&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Lecture 13 -->
-                <div class="lesson-card">
-                    <div class="card-image">
-                        <img src="../assets/images/lesson-placeholder.svg" alt="Functional Analysis 28-08-2025">
-                        <div class="card-overlay">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Functional Analysis | Dr. Raghavendra.V</h3>
-                        <p>Recorded lecture from 28-08-2025.</p>
-                        <div class="lesson-meta">
-                            <span><i class="fas fa-clock"></i> 21:12</span>
-                            <span><i class="fas fa-calendar-alt"></i> 28-08-2025</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=LcFXexZ4ESw&list=PLlS7_Fg1JIsReA8Yz6EuJnrMRTcXiX3Yq&index=13" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            Watch on YouTube <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Replay. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="../assets/scripts.js"></script>
+  <!-- Script -->
+  <script src="../assets/playlist_viewer.js"></script>
 </body>
 </html>
